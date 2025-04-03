@@ -1,60 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/et_Register.id"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="아이디"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_Register.pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="패스워드"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_Register.id"
-        app:layout_constraintStart_toStartOf="@+id/et_Register.id"
-        app:layout_constraintTop_toBottomOf="@+id/et_Register.id" />
+        <EditText
+            android:id="@+id/et_register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="닉네임 입력" />
 
-    <EditText
-        android:id="@+id/et_Register.em"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="이메일"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_Register.pw"
-        app:layout_constraintStart_toStartOf="@+id/et_Register.pw"
-        app:layout_constraintTop_toBottomOf="@+id/et_Register.pw" />
+        <EditText
+            android:id="@+id/et_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="이메일 입력"
+            android:inputType="textEmailAddress" />
 
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="회원가입"
-        app:layout_constraintEnd_toEndOf="@id/et_Register.em"
-        app:layout_constraintStart_toStartOf="@+id/et_Register.em"
-        app:layout_constraintTop_toBottomOf="@+id/et_Register.em" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/et_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호 입력"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="관심사를 선택하세요" />
+
+        <!-- 관심사 1 -->
+        <RadioGroup
+            android:id="@+id/radioGroup_interest_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_science_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="과학" />
+
+            <RadioButton
+                android:id="@+id/rb_history_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="역사" />
+
+            <RadioButton
+                android:id="@+id/rb_grammar_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="맞춤법" />
+        </RadioGroup>
+
+        <!-- 관심사 2 -->
+        <RadioGroup
+            android:id="@+id/radioGroup_interest_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_idiom_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사자성어" />
+
+            <RadioButton
+                android:id="@+id/rb_capital_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수도" />
+
+            <RadioButton
+                android:id="@+id/rb_art_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예술" />
+        </RadioGroup>
+
+        <!-- 관심사 3 -->
+        <RadioGroup
+            android:id="@+id/radioGroup_interest_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_science_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="과학" />
+
+            <RadioButton
+                android:id="@+id/rb_history_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="역사" />
+
+            <RadioButton
+                android:id="@+id/rb_grammar_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="맞춤법" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원가입" />
+
+    </LinearLayout>
+</ScrollView>
