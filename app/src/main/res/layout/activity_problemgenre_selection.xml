@@ -6,40 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".solveActivity">
+    tools:context=".problemgenre_selection">
 
     <Button
-        android:id="@+id/btn_solvescience"
+        android:id="@+id/btn_science"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="과학" />
 
     <Button
-        android:id="@+id/btn_solvehistory"
+        android:id="@+id/btn_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="역사" />
 
     <Button
-        android:id="@+id/btn_"
+        android:id="@+id/btn_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
 
     <Button
-        android:id="@+id/btn_"
+        android:id="@+id/btn_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
 
     <Button
-        android:id="@+id/btn_"
+        android:id="@+id/btn_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
 
     <Button
-        android:id="@+id/btn_"
+        android:id="@+id/btn_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
