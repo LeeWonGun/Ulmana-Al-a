@@ -6,41 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".solveActivity">
+    tools:context=".problemtype_selection">
 
     <Button
-        android:id="@+id/btn_solvescience"
+        android:id="@+id/btn_test30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="과학" />
+        android:text="30문제 시험" />
 
     <Button
-        android:id="@+id/btn_solvehistory"
+        android:id="@+id/btn_test25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="역사" />
+        android:text="25문제 시험" />
 
     <Button
-        android:id="@+id/btn_"
+        android:id="@+id/btn_quiz25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="25문제 퀴즈" />
 
     <Button
-        android:id="@+id/btn_"
+        android:id="@+id/btn_speedquiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/btn_"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/btn_"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="스피드 퀴즈" />
 </LinearLayout>
