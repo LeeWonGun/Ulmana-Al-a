@@ -7,19 +7,19 @@
     tools:context=".studyFragment">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_problemsolving"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="문제풀이" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_incorrectanswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="오답노트" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/ranking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="랭킹" />
