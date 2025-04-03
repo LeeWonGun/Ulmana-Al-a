@@ -6,36 +6,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".problemgenre_selection">
+    tools:context=".solveActivity">
 
     <Button
-        android:id="@+id/btn_science"
+        android:id="@+id/btn_solvescience"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="과학" />
 
     <Button
-        android:id="@+id/btn_history"
+        android:id="@+id/btn_solvehistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="역사" />
 
     <Button
-        android:id="@+id/btn_fouridioms"
+        android:id="@+id/btn_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="사자성어" />
+        android:text="Button" />
 
     <Button
-        android:id="@+id/btn_spelling"
+        android:id="@+id/btn_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="맞춤법" />
+        android:text="Button" />
 
     <Button
-        android:id="@+id/btn_capital"
+        android:id="@+id/btn_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="수도" />
+        android:text="Button" />
 
+    <Button
+        android:id="@+id/btn_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 </LinearLayout>
