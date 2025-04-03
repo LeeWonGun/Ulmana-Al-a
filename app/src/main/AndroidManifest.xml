@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,12 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UlmanaAlA"
         tools:targetApi="31">
+
+        <activity
+            android:name=".problemsolve"
+            android:exported="false" />
+        <activity
+            android:name=".problemtype_selection"
+            android:exported="false" />
+        <activity
+            android:name=".problemgenre_selection"
+            android:exported="false" />
         <activity
             android:name=".GenreActivity"
             android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
+
         <activity android:name=".FindIdActivity"/>
         <activity android:name=".ResetPasswordActivity"/>
         <activity
@@ -29,7 +42,7 @@
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+2                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

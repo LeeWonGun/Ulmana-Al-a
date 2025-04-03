@@ -67,7 +67,7 @@ public class studyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button problemSolvingButton = view.findViewById(R.id.btn_science);/** 과학 선택시 화면이동*/
+        Button problemSolvingButton = view.findViewById(R.id.btn_problemsolving);/** 과학 선택시 화면이동*/
         problemSolvingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
