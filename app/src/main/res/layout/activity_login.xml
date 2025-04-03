@@ -8,14 +8,14 @@
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/et_Login_id"
-        android:layout_width="wrap_content"
+        android:id="@+id/et_Login_email"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="아이디"
+        android:hint="이메일"
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,22 +24,22 @@
 
     <EditText
         android:id="@+id/et_Login_pw"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="패스워드"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_Login_id"
-        app:layout_constraintStart_toStartOf="@+id/et_Login_id"
-        app:layout_constraintTop_toBottomOf="@+id/et_Login_id" />
+        app:layout_constraintEnd_toEndOf="@+id/et_Login_email"
+        app:layout_constraintStart_toStartOf="@+id/et_Login_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_Login_email" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="로그인"
         app:layout_constraintEnd_toEndOf="@+id/et_Login_pw"
         app:layout_constraintStart_toStartOf="@+id/et_Login_pw"
@@ -49,9 +49,32 @@
         android:id="@+id/btn_mv_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="회원가입"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <!-- 아이디 찾기 버튼 -->
+    <Button
+        android:id="@+id/btn_find_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="아이디 찾기"
+        app:layout_constraintEnd_toStartOf="@+id/btn_find_pw"
+        app:layout_constraintStart_toStartOf="@+id/btn_mv_register"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mv_register" />
+
+    <!-- 비밀번호 찾기 버튼 -->
+    <Button
+        android:id="@+id/btn_find_pw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="비밀번호 찾기"
+        app:layout_constraintEnd_toEndOf="@+id/btn_mv_register"
+        app:layout_constraintStart_toEndOf="@+id/btn_find_id"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mv_register" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
