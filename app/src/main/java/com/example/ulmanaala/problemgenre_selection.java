@@ -16,20 +16,17 @@ public class problemgenre_selection extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_problemgenre_selection);
 
-
         // 과학 분야 선택시
         Button btnScience = findViewById(R.id.btn_science);
         btnScience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String genre="sciencce";
+                String genre = "science";
 
                 Intent intent = new Intent(problemgenre_selection.this, problemtype_selection.class);
-                intent.putExtra("genre",genre);
+                intent.putExtra("genre", genre);
                 startActivity(intent);
             }
         });
-
-
     }
 }

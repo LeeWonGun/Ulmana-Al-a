@@ -9,40 +9,40 @@
     tools:context=".GenreActivity">
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/chk_science"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="과학" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/chk_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="역사" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/chk_fouridoms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="사자성어" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/chk_spelling"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="맞춤법" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/chk_art"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="미술" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/chk_capital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="수도" />
 
     <Button
         android:id="@+id/btn_selectgenre"
