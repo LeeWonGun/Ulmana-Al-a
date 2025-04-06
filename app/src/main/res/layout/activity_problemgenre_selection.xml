@@ -21,26 +21,21 @@
         android:text="역사" />
 
     <Button
-        android:id="@+id/btn_1"
+        android:id="@+id/btn_four_idioms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="사자성어" />
 
     <Button
-        android:id="@+id/btn_2"
+        android:id="@+id/btn_spelling"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="맞춤법" />
 
     <Button
-        android:id="@+id/btn_3"
+        android:id="@+id/btn_capital"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="수도" />
 
-    <Button
-        android:id="@+id/btn_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 </LinearLayout>

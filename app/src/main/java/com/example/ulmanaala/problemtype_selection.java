@@ -2,42 +2,37 @@ package com.example.ulmanaala;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class problemtype_selection extends AppCompatActivity {
 
-    private String genre; // 액티비티에서 전달받은 분야 저장
+    private String genre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_problemtype_selection);
 
-        // 액티비티에서 전달받은 분야 데이터 추출
-        Intent receivedIntent = getIntent();
-        if (receivedIntent != null) {
-            genre = receivedIntent.getStringExtra("genre");
-        }
+        // 장르 데이터 수신
+        genre = getIntent().getStringExtra("genre");
 
-        Button btntest30 = findViewById(R.id.btn_test30);
+        // 문제 유형 버튼 초기화
+        Button btnTest30 = findViewById(R.id.btn_test30);
+       // Button btnTest25 = findViewById(R.id.btn_test25);
 
-        // 시험30문제 버튼 클릭
-        btntest30.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String type = "test30";
+        // 시험30문제 버튼
+        btnTest30.setOnClickListener(v -> startProblemSolve("test30"));
 
+        // 시험25문제 버튼
+       // btnTest50.setOnClickListener(v -> startProblemSolve("test25"));
+    }
 
-                Intent intent = new Intent(problemtype_selection.this, problemsolve.class);
-                intent.putExtra("genre", genre); //  분야
-                intent.putExtra("type", type); //  방식
-                startActivity(intent);
-            }
-        });
+    private void startProblemSolve(String type) {
+        Intent intent = new Intent(this, problemsolve.class);
+        intent.putExtra("genre", genre);
+        intent.putExtra("type", type);
+        startActivity(intent);
     }
 }
