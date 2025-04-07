@@ -22,6 +22,7 @@ public class problem extends Fragment {
         return fragment;
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class problem extends Fragment {
         if (getArguments() != null) {
             String problemNum = getArguments().getString(ARG_PROBLEM_NUM);
 
-            // 문제 번호에 따른 내용 표시 (예: 텍스트뷰에 출력)
+            // 문제 번호에 따른 내용 표시
             TextView textView = view.findViewById(R.id.text_problemcontent);
             textView.setText("문제 번호: " + problemNum); // 예시로 문제 번호 출력
         }

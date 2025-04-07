@@ -9,16 +9,10 @@
     tools:context=".problemtype_selection">
 
     <Button
-        android:id="@+id/btn_test30"
+        android:id="@+id/btn_quiz50"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="30문제 시험" />
-
-    <Button
-        android:id="@+id/btn_test25"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="25문제 시험" />
+        android:text="50문제 퀴즈" />
 
     <Button
         android:id="@+id/btn_quiz25"

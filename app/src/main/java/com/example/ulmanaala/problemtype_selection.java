@@ -19,14 +19,18 @@ public class problemtype_selection extends AppCompatActivity {
         genre = getIntent().getStringExtra("genre");
 
         // 문제 유형 버튼 초기화
-        Button btnTest30 = findViewById(R.id.btn_test30);
-       // Button btnTest25 = findViewById(R.id.btn_test25);
+        Button btnQuiz50 = findViewById(R.id.btn_quiz50);
+        Button btnQuiz25 = findViewById(R.id.btn_quiz25);
+        Button btnSpeedQuiz = findViewById(R.id.btn_speedquiz);
 
-        // 시험30문제 버튼
-        btnTest30.setOnClickListener(v -> startProblemSolve("test30"));
+        // 시험50문제 버튼
+        btnQuiz50.setOnClickListener(v -> startProblemSolve("퀴즈50"));
 
         // 시험25문제 버튼
-       // btnTest50.setOnClickListener(v -> startProblemSolve("test25"));
+        btnQuiz25.setOnClickListener(v -> startProblemSolve("퀴즈25"));
+
+        // 스피드퀴즈 버튼
+        btnSpeedQuiz.setOnClickListener(v -> startProblemSolve("speedquiz"));
     }
 
     private void startProblemSolve(String type) {

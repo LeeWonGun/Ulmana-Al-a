@@ -21,10 +21,18 @@ public class problemsolve extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problemsolve);
 
-        // Intent에서 문제 유형 받기
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
-        setMaxProblemNumber(type); // 유형에 따라 최대 문제 수 설정
+        String genre = intent.getStringExtra("genre");
+
+        TextView textSelectedGenre = findViewById(R.id.text_selectedgenre);
+        TextView textSelectedType = findViewById(R.id.text_selectedtype);
+
+        textSelectedGenre.setText(genre);
+        textSelectedType.setText(type+"문제");
+
+        setMaxProblemNumber(type);
+
 
         // 문제 번호 표시 TextView 초기화
         TextView textProblemNum = findViewById(R.id.text_problemnum);
@@ -63,15 +71,14 @@ public class problemsolve extends AppCompatActivity {
     private void setMaxProblemNumber(String type) {
         if (type != null) {
             switch (type) {
-                case "test30":
-                    maxProblemNumber = 30;
+                case "퀴즈50":
+                    maxProblemNumber = 50;
                     break;
-                case "test25":
+                case "퀴즈25":
                     maxProblemNumber = 25;
                     break;
-
                 default:
-                    maxProblemNumber = 15;
+
             }
         }
         Log.d("ProblemSolve", "Max Problems: " + maxProblemNumber);
