@@ -38,11 +38,12 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity android:name=".RankingActivity" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
-2                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
