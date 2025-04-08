@@ -1,12 +1,19 @@
 package com.example.ulmanaala;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +22,8 @@ import android.view.ViewGroup;
  */
 public class myinfoFragment extends Fragment {
 
+
+    private ImageButton btnSettings;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -46,6 +55,7 @@ public class myinfoFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +65,46 @@ public class myinfoFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_myinfo, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // 시스템 UI 여백 처리
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.info_fragment), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // 버튼 연결 및 클릭 이벤트 설정
+        btnSettings = view.findViewById(R.id.btn_settings);
+        btnSettings.setOnClickListener(v -> showSettingsMenu(v));
+    }
+
+    private void showSettingsMenu(View view) {
+        PopupMenu popup = new PopupMenu(requireContext(), view);
+        popup.getMenuInflater().inflate(R.menu.settings_menu, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(item -> {
+               int id = item.getItemId();
+            if (id == R.id.menu_change_nickname) {
+                Toast.makeText(requireContext(), "닉네임 변경 선택", Toast.LENGTH_SHORT).show();
+                return true;
+            } else if (id == R.id.menu_change_password) {
+                Toast.makeText(requireContext(), "비밀번호 변경 선택", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
+        });
+
+        popup.show();
     }
 }

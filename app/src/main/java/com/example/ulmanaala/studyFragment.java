@@ -55,13 +55,25 @@ public class studyFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_study, container, false);
+        // 레이아웃을 inflate해서 view 객체 생성
+        View view = inflater.inflate(R.layout.fragment_study, container, false);
+
+        // 버튼 찾아서 클릭 이벤트 설정
+        Button btnRanking = view.findViewById(R.id.ranking);
+        btnRanking.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), RankingActivity.class);
+            startActivity(intent);
+        });
+
+        // view 반환 (여기 하나만 있어야 함)
+        return view;
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -75,7 +87,10 @@ public class studyFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
     }
+
+
 
 
 }
