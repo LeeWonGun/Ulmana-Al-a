@@ -1,135 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeFragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".homeFragment">
 
+    <TextView
+        android:id="@+id/dailyFactTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="데일리 상식"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 세로 리사이클러뷰 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dailyFactRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:scrollbars="vertical" />
+
+    <!-- 추천 퀴즈 이동 카드 -->
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/recommendQuizCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp">
 
-        <!-- 상단 제목 -->
         <TextView
-            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="데일리 상식"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp" />
-
-        <!-- 상식 항목 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#EEEEEE"
-            android:padding="12dp"
-            android:layout_marginBottom="12dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="분야 : 역사\n통일신라의 군인인 장보고는 해적을 소탕하기 위해 해군기지를 설치하였으며 이름은 ‘청해진’이라 불렸으며..." />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleType="fitCenter"
-                android:background="@null"
-                android:src="@drawable/ic_search_blue"
-                android:contentDescription="돋보기 버튼" />
-        </LinearLayout>
-
-        <!-- 상식 항목 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#EEEEEE"
-            android:padding="12dp"
-            android:layout_marginBottom="12dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="분야 : 과학\n우주에서 지구로 유입되는 하전입자들이 고층대기의 기체들과 충돌하여 빛을 내는 현상은 ‘오로라현상’이라 한다" />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_search_blue"
-                android:contentDescription="돋보기 버튼" />
-        </LinearLayout>
-
-        <!-- 상식 항목 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#EEEEEE"
-            android:padding="12dp"
-            android:layout_marginBottom="24dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="분야 : 수도\n커피원두의 생산지로 유명한 에티오피아의 수도는 ‘아디스아바바’이다" />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@null"
-                android:contentDescription="돋보기 버튼"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_search_blue" />
-        </LinearLayout>
-
-        <!-- 하단 추천 조합 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:paddingVertical="16dp">
-
-            <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="45dp"
-                android:scaleType="fitCenter"
-                android:background="@null"
-                android:src="@drawable/ic_back"
-                android:contentDescription="왼쪽 화살표" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가장 인기 있는 조합!\n역사 X 스피드 퀴즈 풀러가기"
-
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_marginHorizontal="16dp"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:background="@null"
-                android:contentDescription="오른쪽 화살표"
-                android:layout_width="30dp"
-                android:layout_height="45dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_arrow_left" />
-        </LinearLayout>
-
+            android:text="가장 인기 있는 조합!\n역사 X 스피드 퀴즈 돌리기"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginHorizontal="12dp"
+            android:gravity="center" />
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>
