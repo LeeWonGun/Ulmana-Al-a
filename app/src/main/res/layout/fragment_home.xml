@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeFragmentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".homeFragment">
+
+    <TextView
+        android:id="@+id/dailyFactTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="데일리 상식"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btn_refresh_daily_facts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새로고침"
+        android:layout_gravity="end"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 세로 리사이클러뷰 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dailyFactRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:scrollbars="vertical" />
+
+    <!-- 추천 퀴즈 이동 카드 -->
+    <LinearLayout
+        android:id="@+id/recommendQuizCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가장 인기 있는 조합!\n역사 X 스피드 퀴즈 돌리기"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginHorizontal="12dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

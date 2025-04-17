@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".problemgenre_selection">
+
+    <Button
+        android:id="@+id/btn_science"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="과학" />
+
+    <Button
+        android:id="@+id/btn_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="역사" />
+
+    <Button
+        android:id="@+id/btn_spelling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="맞춤법" />
+
+    <Button
+        android:id="@+id/btn_four_idioms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="사자성어" />
+
+    <Button
+        android:id="@+id/btn_capital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수도" />
+
+    <Button
+        android:id="@+id/btn_art"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="미술" />
+
+</LinearLayout>

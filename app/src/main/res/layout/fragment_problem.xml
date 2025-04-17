@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/text_problemcontent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="문제 내용"
+        android:textSize="16sp" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_option1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="옵션 1" />
+
+        <RadioButton
+            android:id="@+id/radio_option2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="옵션 2" />
+
+        <RadioButton
+            android:id="@+id/radio_option3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="옵션 3" />
+
+        <RadioButton
+            android:id="@+id/radio_option4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="옵션 4" />
+    </RadioGroup>
+</LinearLayout>

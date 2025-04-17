@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.ulmanaala.homeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/studyFragment"
+        android:name="com.example.ulmanaala.studyFragment"
+        android:label="fragment_study"
+        tools:layout="@layout/fragment_study" />
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.example.ulmanaala.chatbotFragment"
+        android:label="fragment_chatbot"
+        tools:layout="@layout/fragment_chatbot" />
+    <fragment
+        android:id="@+id/myinfoFragment"
+        android:name="com.example.ulmanaala.myinfoFragment"
+        android:label="fragment_myinfo"
+        tools:layout="@layout/fragment_myinfo" />
+</navigation>
