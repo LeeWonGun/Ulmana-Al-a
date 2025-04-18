@@ -8,7 +8,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "http://13.125.66.253:8000";
+    // 장고 서버 연결(테스트)
+    private static final String BASE_URL = "http://10.0.2.2:8000/";
+    // ec2 서버 연결할 경우
+    // private static final String BASE_URL = "http://13.125.66.253:8000/";
 
     private static Retrofit retrofit = null;
 

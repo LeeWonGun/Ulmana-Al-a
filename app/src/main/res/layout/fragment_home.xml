@@ -17,6 +17,14 @@
         android:textStyle="bold"
         android:layout_marginBottom="12dp" />
 
+    <Button
+        android:id="@+id/btn_refresh_daily_facts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새로고침"
+        android:layout_gravity="end"
+        android:layout_marginBottom="12dp" />
+
     <!-- 세로 리사이클러뷰 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dailyFactRecyclerView"

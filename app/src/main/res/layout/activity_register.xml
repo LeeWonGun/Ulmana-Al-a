@@ -32,91 +32,53 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="관심사를 선택하세요" />
+            android:text="관심사를 선택하세요"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <!-- 관심사 1 -->
-        <RadioGroup
-            android:id="@+id/radioGroup_interest_1"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/chk_science"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="과학" />
 
-            <RadioButton
-                android:id="@+id/rb_science_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="과학" />
-
-            <RadioButton
-                android:id="@+id/rb_history_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="역사" />
-
-            <RadioButton
-                android:id="@+id/rb_grammar_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="맞춤법" />
-        </RadioGroup>
-
-        <!-- 관심사 2 -->
-        <RadioGroup
-            android:id="@+id/radioGroup_interest_2"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/chk_history"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="역사" />
 
-            <RadioButton
-                android:id="@+id/rb_idiom_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="사자성어" />
-
-            <RadioButton
-                android:id="@+id/rb_capital_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="수도" />
-
-            <RadioButton
-                android:id="@+id/rb_art_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="예술" />
-        </RadioGroup>
-
-        <!-- 관심사 3 -->
-        <RadioGroup
-            android:id="@+id/radioGroup_interest_3"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/chk_idiom"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="사자성어" />
 
-            <RadioButton
-                android:id="@+id/rb_science_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="과학" />
+        <CheckBox
+            android:id="@+id/chk_grammar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="맞춤법" />
 
-            <RadioButton
-                android:id="@+id/rb_history_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="역사" />
+        <CheckBox
+            android:id="@+id/chk_capital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수도" />
 
-            <RadioButton
-                android:id="@+id/rb_grammar_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="맞춤법" />
-        </RadioGroup>
+        <CheckBox
+            android:id="@+id/chk_art"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="미술" />
 
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="회원가입" />
+            android:text="회원가입"
+            android:layout_marginTop="20dp" />
 
     </LinearLayout>
 </ScrollView>

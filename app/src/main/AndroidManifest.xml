@@ -18,10 +18,14 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".problemsolve"
+            android:name=".ResultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ProblemSolveActivity"
             android:exported="false" />
         <activity
-            android:name=".problemtype_selection"
+            android:name=".ProblemType_SelectionActivity"
             android:exported="false" />
         <activity
             android:name=".problemgenre_selection"
@@ -30,6 +34,9 @@
             android:name=".GenreActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".SpeedQuizTimeSelectionActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
