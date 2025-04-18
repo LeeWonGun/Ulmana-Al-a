@@ -83,7 +83,7 @@ public class studyFragment extends Fragment {
         problemSolvingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), problemtype_selection.class);
+                Intent intent = new Intent(getActivity(), problemgenre_selection.class);
                 startActivity(intent);
             }
         });

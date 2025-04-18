@@ -68,10 +68,17 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
+                            LoginResponse loginResponse = response.body();
+                            int userId = loginResponse.getUserId();  // 수정된 부분
+                            String token = loginResponse.getToken();  // 수정된 부분
+
+                            Log.d("Login", "userId: " + userId + ", token: " + token);  // 로그 출력
+
                             // SharedPreferences에 이메일 저장
-                            SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+                            SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("userEmail", email);
+                            editor.putInt("userId", userId);  // userId 저장
+                            editor.putString("token", token);  // token 저장
                             editor.apply();
 
                             Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
@@ -96,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnMvRegister.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-       });
+        });
 
         btnFindId.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, FindIdActivity.class));

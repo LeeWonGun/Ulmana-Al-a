@@ -6,25 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".problemtype_selection">
+    tools:context=".ProblemType_SelectionActivity">
 
     <Button
-        android:id="@+id/btn_test30"
+        android:id="@+id/btn_test50"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="30문제 시험" />
+        android:text="50문제 시험" />
 
     <Button
         android:id="@+id/btn_test25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="25문제 시험" />
-
-    <Button
-        android:id="@+id/btn_quiz25"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="25문제 퀴즈" />
 
     <Button
         android:id="@+id/btn_speedquiz"
