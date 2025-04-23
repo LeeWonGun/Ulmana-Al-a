@@ -1,3 +1,6 @@
+// Gradle Sync 시 테스트 출력
+println("✅ [Gradle Test] OPENAI_KEY = ${project.findProperty("OPENAI_API_KEY")}")
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -14,6 +17,15 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // ✅ 환경 변수 읽기 (수정된 부분)
+        val openaiKey = project.findProperty("OPENAI_API_KEY") as String? ?: ""
+        buildConfigField("String", "OPENAI_API_KEY", "\"$openaiKey\"")
+    }
+
+    // ✅ BuildConfig 생성 활성화
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -25,6 +37,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -32,7 +45,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -45,5 +57,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
 }
