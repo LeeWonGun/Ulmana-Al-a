@@ -1,10 +1,12 @@
 package com.example.ulmanaala.api;
 
+import com.example.ulmanaala.request.ChatRequest;
 import com.example.ulmanaala.request.FindIdRequest;
 import com.example.ulmanaala.request.LoginRequest;
 import com.example.ulmanaala.request.QuizResultRequest;
 import com.example.ulmanaala.request.RegisterRequest;
 import com.example.ulmanaala.request.ResetPasswordRequest;
+import com.example.ulmanaala.response.ChatResponse;
 import com.example.ulmanaala.response.DailyFactResponse;
 import com.example.ulmanaala.response.FindIdResponse;
 import com.example.ulmanaala.response.LoginResponse;
@@ -65,5 +67,13 @@ public interface ApiService {
     // 퀴즈 제출
     @POST("quiz/submit/")
     Call<QuizResultResponse> submitQuizResult(@Header("Authorization") String authToken,  @Body QuizResultRequest request);
+
+    // ✅ ChatGPT API (동적 헤더 사용)
+    @POST("https://api.openai.com/v1/chat/completions")
+    Call<ChatResponse> sendChat(
+            @Header("Authorization") String authHeader,
+            @Header("Content-Type") String contentType,
+            @Body ChatRequest request
+    );
 
 }

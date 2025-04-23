@@ -8,28 +8,51 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    // 장고 서버 연결(테스트)
-    private static final String BASE_URL = "http://10.0.2.2:8000/";
-    // ec2 서버 연결할 경우
-    // private static final String BASE_URL = "http://13.125.66.253:8000/";
 
-    private static Retrofit retrofit = null;
+    private static Retrofit defaultRetrofit = null;
+    private static Retrofit chatRetrofit = null;
 
+    // ✅ Django 서버 주소
+    private static final String BASE_URL = "http://13.125.66.253:8000/";
+
+    // ✅ OpenAI API 주소
+    private static final String CHAT_API_URL = "https://api.openai.com/";
+
+    // ✅ Django 백엔드용 ApiService
     public static ApiService getApiService() {
-        if (retrofit == null) {
+        if (defaultRetrofit == null) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY); // 요청 본문 로그 출력
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(loggingInterceptor)
                     .build();
 
-            retrofit = new Retrofit.Builder()
+            defaultRetrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .client(client) // 로그 인터셉터 추가
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit.create(ApiService.class);
+        return defaultRetrofit.create(ApiService.class);
+    }
+
+    // ✅ ChatGPT(OpenAI)용 ApiService
+    public static ApiService getChatApiService() {
+        if (chatRetrofit == null) {
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(loggingInterceptor)
+                    .build();
+
+            chatRetrofit = new Retrofit.Builder()
+                    .baseUrl(CHAT_API_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return chatRetrofit.create(ApiService.class);
     }
 }
