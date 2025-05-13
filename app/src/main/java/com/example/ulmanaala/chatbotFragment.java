@@ -1,5 +1,6 @@
 package com.example.ulmanaala;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +20,6 @@ import com.example.ulmanaala.request.ChatRequest;
 import com.example.ulmanaala.response.ChatResponse;
 import com.example.ulmanaala.BuildConfig;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,37 +37,27 @@ public class chatbotFragment extends Fragment {
     public chatbotFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chatbot, container, false);
 
-        // 바인딩
         userInput = view.findViewById(R.id.userInput);
         submitButton = view.findViewById(R.id.submitButton);
         chatLayout = view.findViewById(R.id.chatLayout);
         chatScrollView = view.findViewById(R.id.chatScrollView);
 
-        // 버튼 클릭 시 실행
         submitButton.setOnClickListener(v -> {
             String question = userInput.getText().toString().trim();
             if (!question.isEmpty()) {
-                addChatBubble("나: " + question, true); // 내 질문 화면에 표시
-
-                sendToChatGPT(question); // GPT에게 질문 보내기
-                userInput.setText(""); // 입력창 비우기
+                addChatBubble("나: " + question, true);
+                sendToChatGPT(question);
+                userInput.setText("");
             }
         });
 
         return view;
     }
 
-    // 질문 전송 함수
     private void sendToChatGPT(String userMessage) {
-
-        Log.d("DEBUG_KEY", "Authorization Header: Bearer " + BuildConfig.OPENAI_API_KEY);
-
-
-
         List<ChatRequest.Message> messages = new ArrayList<>();
         messages.add(new ChatRequest.Message("user", userMessage));
 
@@ -83,33 +73,46 @@ public class chatbotFragment extends Fragment {
             public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     String reply = response.body().getChoices().get(0).getMessage().getContent();
+                    Log.d("GPT_RESPONSE", "답변 수신: " + reply);
                     addChatBubble("GPT: " + reply, false);
                 } else {
                     addChatBubble("GPT 응답 실패: " + response.code(), false);
+                    Log.e("GPT_ERROR", "코드: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<ChatResponse> call, Throwable t) {
                 addChatBubble("GPT 요청 오류: " + t.getMessage(), false);
+                Log.e("GPT_ERROR", "통신 실패: " + t.getMessage());
             }
         });
     }
 
-    // 채팅 말풍선 추가 함수
     private void addChatBubble(String text, boolean isUser) {
+        if (getContext() == null) return;
+
         TextView textView = new TextView(getContext());
         textView.setText(text);
-        textView.setPadding(20, 15, 20, 15);
+        textView.setTextColor(Color.BLACK);
         textView.setTextSize(15);
+        textView.setPadding(20, 15, 20, 15);
 
         if (isUser) {
-            textView.setBackgroundResource(R.drawable.user_chat_bubble); // 사용자의 말풍선 배경
+            textView.setBackgroundResource(R.drawable.user_chat_bubble);
         } else {
-            textView.setBackgroundResource(R.drawable.gpt_chat_bubble); // GPT의 말풍선 배경
+            textView.setBackgroundResource(R.drawable.gpt_chat_bubble);
         }
 
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(10, 10, 10, 10);
+        textView.setLayoutParams(params);
+
         chatLayout.addView(textView);
-        chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN)); // 아래로 스크롤
+        chatLayout.invalidate();
+
+        chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
     }
 }
