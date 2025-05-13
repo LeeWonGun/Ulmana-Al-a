@@ -52,9 +52,9 @@ public class homeFragment extends Fragment {
         recyclerView.setAdapter(dailyFactAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        // ✅ SharedPreferences에서 이메일 꺼내기
-        SharedPreferences prefs = getActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
-        userEmail = prefs.getString("userEmail", null);
+        // ✅ SharedPreferences에서 이메일 꺼내기 (통일된 이름과 키 사용)
+        SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userEmail = prefs.getString("email", null);
 
         // ✅ 새로고침 버튼
         Button refreshButton = view.findViewById(R.id.btn_refresh_daily_facts);
