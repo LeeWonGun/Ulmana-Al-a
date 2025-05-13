@@ -18,11 +18,14 @@ import com.example.ulmanaala.response.SpeedQuizResponse;
 import com.example.ulmanaala.response.UserProfileResponse;
 
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -48,6 +51,13 @@ public interface ApiService {
     @GET("profile/")
     Call<UserProfileResponse> getUserProfile(@Header("Authorization") String authHeader);
 
+    // 닉네임 변경 API
+    @PATCH("profile/update-nickname/")
+    Call<ResponseBody> updateNickname(
+            @Header("Authorization") String authToken,
+            @Body Map<String, String> body
+    );
+
     // 데일리 상식
     @GET("/daily-facts/")
     Call<DailyFactResponse> getDailyFacts(@Query("email") String email);
@@ -66,14 +76,32 @@ public interface ApiService {
 
     // 퀴즈 제출
     @POST("quiz/submit/")
-    Call<QuizResultResponse> submitQuizResult(@Header("Authorization") String authToken,  @Body QuizResultRequest request);
+    Call<QuizResultResponse> submitQuizResult(
+            @Header("Authorization") String authToken,
+            @Body QuizResultRequest request
+    );
 
-    // ✅ ChatGPT API (동적 헤더 사용)
+    // 🔵 최근 퀴즈 결과 가져오기 추가
+    @GET("quiz/result/")
+    Call<List<QuizResultResponse>> getQuizResults(
+            @Header("Authorization") String authHeader
+    );
+
+    // ChatGPT API
     @POST("https://api.openai.com/v1/chat/completions")
     Call<ChatResponse> sendChat(
             @Header("Authorization") String authHeader,
             @Header("Content-Type") String contentType,
             @Body ChatRequest request
+    );
+
+    @POST("reset-password/")
+    Call<ResponseBody> resetPassword(@Body Map<String, String> body);
+
+    @PATCH("profile/update-interests/")
+    Call<ResponseBody> updateInterests(
+            @Header("Authorization") String authToken,
+            @Body Map<String, String> body
     );
 
 }
