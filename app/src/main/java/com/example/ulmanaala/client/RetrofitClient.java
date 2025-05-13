@@ -13,7 +13,7 @@ public class RetrofitClient {
     private static Retrofit chatRetrofit = null;
 
     // ✅ Django 서버 주소
-    private static final String BASE_URL = "http://13.125.66.253:8000/";
+    private static final String BASE_URL = "http://43.200.172.76:8000/";
 
     // ✅ OpenAI API 주소
     private static final String CHAT_API_URL = "https://api.openai.com/";
