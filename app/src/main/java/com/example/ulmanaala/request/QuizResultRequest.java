@@ -1,39 +1,65 @@
 package com.example.ulmanaala.request;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class QuizResultRequest {
-    private List<Integer> questionIds;
-    private List<Integer> userAnswers;
-    private int userId;  // 사용자 ID가 필요하면 추가
 
-    public QuizResultRequest(List<Integer> questionIds, List<Integer> userAnswers, int userId) {
-        this.questionIds = questionIds;
-        this.userAnswers = userAnswers;
-        this.userId = userId;
+    @SerializedName("genre_id")
+    private int genreId;
+
+    @SerializedName("quiz_results")
+    private List<QuizAnswer> quizResults;
+
+    @SerializedName("quiz_type")
+    private String quizType;
+
+    @SerializedName("selected_time")
+    private int selectedTime;  // 추가: 1 또는 3
+
+    // 수정된 생성자
+    public QuizResultRequest(int genreId, List<QuizAnswer> quizResults, String quizType, int selectedTime, String dummy) {
+        this.genreId = genreId;
+        this.quizResults = quizResults;
+        this.quizType = quizType;
+        this.selectedTime = selectedTime;
     }
 
-    public List<Integer> getQuestionIds() {
-        return questionIds;
+    public int getGenreId() {
+        return genreId;
     }
 
-    public List<Integer> getUserAnswers() {
-        return userAnswers;
+    public List<QuizAnswer> getQuizResults() {
+        return quizResults;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getQuizType() {
+        return quizType;
     }
 
-    public void setQuestionIds(List<Integer> questionIds) {
-        this.questionIds = questionIds;
+    public int getSelectedTime() {
+        return selectedTime;
     }
 
-    public void setUserAnswers(List<Integer> userAnswers) {
-        this.userAnswers = userAnswers;
-    }
+    // 내부 클래스는 그대로 유지
+    public static class QuizAnswer {
+        @SerializedName("question_id")
+        private int questionId;
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+        @SerializedName("user_answer")
+        private int userAnswer;
+
+        public QuizAnswer(int questionId, int userAnswer) {
+            this.questionId = questionId;
+            this.userAnswer = userAnswer;
+        }
+
+        public int getQuestionId() {
+            return questionId;
+        }
+
+        public int getUserAnswer() {
+            return userAnswer;
+        }
     }
 }

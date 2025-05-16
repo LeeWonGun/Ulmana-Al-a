@@ -1,6 +1,7 @@
 package com.example.ulmanaala;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.Button;
@@ -12,7 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ulmanaala.api.ApiService;
 import com.example.ulmanaala.client.RetrofitClient;
+import com.example.ulmanaala.request.QuizResultRequest;
 import com.example.ulmanaala.response.QuestionResponse;
+import com.example.ulmanaala.response.QuizResultResponse;
 import com.example.ulmanaala.response.SpeedQuizResponse;
 
 import java.util.ArrayList;
@@ -27,45 +30,43 @@ public class ProblemSolveActivity extends AppCompatActivity {
 
     private int currentProblemNumber = 1;
     private int maxProblemNumber = 10;
-    private Button btnNext;
+    private Button btnNext, btnBefore;
+    private TextView textTimer;
     private List<QuestionResponse> questionList = new ArrayList<>();
     private List<Integer> userAnswers = new ArrayList<>();
-
     private CountDownTimer countDownTimer;
     private long remainingTimeMillis;
-    private TextView textTimer;
-
+    private long startTimeMillis;
     private String quizType;
+    private int selectedTimeInMinutes = 1; // 클래스 변수로 선언
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problemsolve);
 
+        textTimer = findViewById(R.id.text_timer);
+        btnNext   = findViewById(R.id.btn_nextproblem);
+        btnBefore = findViewById(R.id.btn_beforeproblem);
+
         Intent intent = getIntent();
         String genre = intent.getStringExtra("genre");
-        quizType = intent.getStringExtra("type");
-        int genreId = getGenreId(genre);
+        quizType     = intent.getStringExtra("type");
+        selectedTimeInMinutes = intent.getIntExtra("selectedTime", 1);
+        int genreId  = getGenreId(genre);
 
-        textTimer = findViewById(R.id.text_timer);
         setMaxProblemNumber(quizType);
 
         if ("speed".equals(quizType)) {
-            int selectedTimeInMinutes = intent.getIntExtra("selectedTime", 1);
-            remainingTimeMillis = selectedTimeInMinutes * 60 * 1000;
+            remainingTimeMillis = selectedTimeInMinutes * 60L * 1000L;
             textTimer.setVisibility(TextView.VISIBLE);
+            startTimeMillis = System.currentTimeMillis();
             startCountdownTimer();
         } else {
             textTimer.setVisibility(TextView.GONE);
         }
 
         fetchQuestions(quizType, genreId);
-
-        TextView textProblemNum = findViewById(R.id.text_problemnum);
-        textProblemNum.setText(String.valueOf(currentProblemNumber));
-
-        Button btnBefore = findViewById(R.id.btn_beforeproblem);
-        btnNext = findViewById(R.id.btn_nextproblem);
 
         btnBefore.setOnClickListener(v -> {
             saveCurrentAnswer();
@@ -103,109 +104,76 @@ public class ProblemSolveActivity extends AppCompatActivity {
     }
 
     private void setMaxProblemNumber(String type) {
-        if (type != null) {
-            switch (type) {
-                case "test50": maxProblemNumber = 50; break;
-                case "test25": maxProblemNumber = 25; break;
-                case "speed": maxProblemNumber = 100; break;
-                default: maxProblemNumber = 15;
-            }
+        if (type == null) return;
+        switch (type) {
+            case "test50": maxProblemNumber = 50; break;
+            case "test25": maxProblemNumber = 25; break;
+            case "speed":  maxProblemNumber = 100; break;
+            default: maxProblemNumber = 15;
         }
     }
 
     private void updateButtonState() {
         btnNext.setText(currentProblemNumber == maxProblemNumber ? "제출" : "다음");
-        Button btnBefore = findViewById(R.id.btn_beforeproblem);
         btnBefore.setEnabled(currentProblemNumber > 1);
     }
 
     private void submitTest() {
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
-
         saveCurrentAnswer();
 
-        List<Integer> questionIds = new ArrayList<>();
-        for (QuestionResponse q : questionList) {
-            questionIds.add(q.getQuestionId());
-        }
-
-        // 로그인 정보 주석 처리
-        /*
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        int userId = prefs.getInt("userId", -1);
         String token = prefs.getString("token", null);
-
-        if (userId == -1 || token == null) {
+        if (token == null) {
             Toast.makeText(this, "로그인 정보가 없습니다.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        QuizResultRequest request = new QuizResultRequest(questionIds, userAnswers, userId);
-        ApiService apiService = RetrofitClient.getApiService();
-
-        apiService.submitQuizResult("Bearer " + token, request).enqueue(new Callback<QuizResultResponse>() {
-            @Override
-            public void onResponse(Call<QuizResultResponse> call, Response<QuizResultResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // 원래는 결과 화면으로 이동
-                    // 지금은 MainActivity로 이동
-                    Intent intent = new Intent(ProblemSolveActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(ProblemSolveActivity.this, "채점 실패", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<QuizResultResponse> call, Throwable t) {
-                Toast.makeText(ProblemSolveActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
-
-        // 서버 연동 없이 MainActivity로 바로 이동
-        Intent intent = new Intent(ProblemSolveActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
-    }
-
-    private void updateProblemDisplay() {
-        TextView textProblemNum = findViewById(R.id.text_problemnum);
-        textProblemNum.setText(String.valueOf(currentProblemNumber));
-        updateProblemFragment();
-    }
-
-    private void updateProblemFragment() {
-        if (questionList == null || questionList.size() == 0) return;
-
-        QuestionResponse currentQuestion = questionList.get(currentProblemNumber - 1);
-        int selectedOption = userAnswers.get(currentProblemNumber - 1);
-
-        problemFragment newProblemFragment = problemFragment.newInstance(
-                currentQuestion.getQuestionText(),
-                currentQuestion.getOption1(),
-                currentQuestion.getOption2(),
-                currentQuestion.getOption3(),
-                currentQuestion.getOption4(),
-                selectedOption
-        );
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, newProblemFragment);
-        transaction.commit();
-    }
-
-    private void saveCurrentAnswer() {
-        problemFragment currentFragment = (problemFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        if (currentFragment != null) {
-            int selectedAnswer = currentFragment.getSelectedAnswer();
-            userAnswers.set(currentProblemNumber - 1, selectedAnswer);
+        List<QuizResultRequest.QuizAnswer> answerList = new ArrayList<>();
+        for (int i = 0; i < questionList.size(); i++) {
+            int qId = questionList.get(i).getQuestionId();
+            int selected = userAnswers.size() > i ? userAnswers.get(i) : -1;
+            answerList.add(new QuizResultRequest.QuizAnswer(qId, selected));
         }
+
+        String genre = getIntent().getStringExtra("genre");
+        int genreId = getGenreId(genre);
+        QuizResultRequest request = new QuizResultRequest(genreId, answerList, quizType, selectedTimeInMinutes, "");
+
+        ApiService apiService = RetrofitClient.getApiService();
+        apiService.submitQuizResult("Bearer " + token, request)
+                .enqueue(new Callback<QuizResultResponse>() {
+                    @Override
+                    public void onResponse(Call<QuizResultResponse> call, Response<QuizResultResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            QuizResultResponse.Summary summary = response.body().getSummary();
+
+                            int timeTakenSeconds = 0;
+                            if ("speed".equals(quizType)) {
+                                long now = System.currentTimeMillis();
+                                timeTakenSeconds = (int) ((now - startTimeMillis) / 1000);
+                            }
+
+                            Intent intent = new Intent(ProblemSolveActivity.this, ResultActivity.class);
+                            intent.putExtra("genre", genre);
+                            intent.putExtra("quizType", quizType);
+                            intent.putExtra("score", summary.getScore());
+                            intent.putExtra("totalQuestions", summary.getTotal());
+                            intent.putExtra("correct", summary.getCorrect());
+                            intent.putExtra("wrong", summary.getWrong());
+                            intent.putExtra("timeTaken", timeTakenSeconds);
+
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(ProblemSolveActivity.this, "퀴즈 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<QuizResultResponse> call, Throwable t) {
+                        Toast.makeText(ProblemSolveActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void fetchQuestions(String type, int genreId) {
@@ -218,7 +186,9 @@ public class ProblemSolveActivity extends AppCompatActivity {
                     if (response.isSuccessful() && response.body() != null) {
                         questionList = response.body().getQuestions();
                         userAnswers = new ArrayList<>(Collections.nCopies(questionList.size(), -1));
-                        updateProblemFragment();
+                        currentProblemNumber = 1;
+                        updateProblemDisplay();
+                        updateButtonState();
                     } else {
                         Toast.makeText(ProblemSolveActivity.this, "문제 로딩 실패", Toast.LENGTH_SHORT).show();
                     }
@@ -240,7 +210,9 @@ public class ProblemSolveActivity extends AppCompatActivity {
                     if (response.isSuccessful() && response.body() != null) {
                         questionList = response.body();
                         userAnswers = new ArrayList<>(Collections.nCopies(questionList.size(), -1));
-                        updateProblemFragment();
+                        currentProblemNumber = 1;
+                        updateProblemDisplay();
+                        updateButtonState();
                     } else {
                         Toast.makeText(ProblemSolveActivity.this, "문제 로딩 실패", Toast.LENGTH_SHORT).show();
                     }
@@ -254,33 +226,40 @@ public class ProblemSolveActivity extends AppCompatActivity {
         }
     }
 
+    private void updateProblemDisplay() {
+        TextView textProblemNum = findViewById(R.id.text_problemnum);
+        textProblemNum.setText(String.valueOf(currentProblemNumber));
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        QuestionResponse q = questionList.get(currentProblemNumber - 1);
+        problemFragment frag = problemFragment.newInstance(
+                q.getQuestionText(), q.getOption1(), q.getOption2(),
+                q.getOption3(), q.getOption4(), userAnswers.get(currentProblemNumber - 1));
+        tx.replace(R.id.fragment_container, frag).commit();
+    }
+
+    private void saveCurrentAnswer() {
+        problemFragment frag = (problemFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_container);
+        if (frag != null) {
+            userAnswers.set(currentProblemNumber - 1, frag.getSelectedAnswer());
+        }
+    }
+
     private void startCountdownTimer() {
         countDownTimer = new CountDownTimer(remainingTimeMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 remainingTimeMillis = millisUntilFinished;
-                updateTimerUI();
+                long m = millisUntilFinished / 1000 / 60;
+                long s = (millisUntilFinished / 1000) % 60;
+                textTimer.setText(String.format("%02d:%02d", m, s));
             }
 
             @Override
             public void onFinish() {
-                Toast.makeText(ProblemSolveActivity.this, "시간 종료! 자동 제출합니다.", Toast.LENGTH_SHORT).show();
+                textTimer.setText("00:00");
                 submitTest();
             }
         }.start();
-    }
-
-    private void updateTimerUI() {
-        int seconds = (int) (remainingTimeMillis / 1000) % 60;
-        int minutes = (int) ((remainingTimeMillis / 1000) / 60);
-        textTimer.setText(String.format("%02d:%02d", minutes, seconds));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
     }
 }

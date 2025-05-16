@@ -1,35 +1,50 @@
 package com.example.ulmanaala.response;
 
+import com.google.gson.annotations.SerializedName;
+
 public class QuizResultResponse {
-    private int score;
-    private int correctCount;
-    private int wrongCount;
-    private String quizType;   // 🔵 퀴즈 종류 추가
-    private String genre;      // 🔵 퀴즈 장르 추가
-    private String timestamp;  // 🔵 제출 시간 추가
 
-    // Getters
-    public int getScore() {
-        return score;
+    @SerializedName("message")
+    private String message;
+
+    @SerializedName("summary")
+    private Summary summary;
+
+    public String getMessage() {
+        return message;
     }
 
-    public int getCorrectCount() {
-        return correctCount;
+    public Summary getSummary() {
+        return summary;
     }
 
-    public int getWrongCount() {
-        return wrongCount;
-    }
+    public static class Summary {
+        @SerializedName("총 문항 수")
+        private int total;
 
-    public String getQuizType() {
-        return quizType;
-    }
+        @SerializedName("정답 수")
+        private int correct;
 
-    public String getGenre() {
-        return genre;
-    }
+        @SerializedName("오답 수")
+        private int wrong;
 
-    public String getTimestamp() {
-        return timestamp;
+        @SerializedName("획득 점수")
+        private int score;
+
+        public int getTotal() {
+            return total;
+        }
+
+        public int getCorrect() {
+            return correct;
+        }
+
+        public int getWrong() {
+            return wrong;
+        }
+
+        public int getScore() {
+            return score;
+        }
     }
 }

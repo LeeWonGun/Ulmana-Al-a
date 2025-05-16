@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 기존 버튼 영역 -->
+    <Button
+        android:id="@+id/btn_problem_and_solution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="문제 및 해설 보기" />
+
+    <Button
+        android:id="@+id/btn_wrong_problems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="오답 문제 풀기"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>
