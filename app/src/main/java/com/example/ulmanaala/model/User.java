@@ -1,4 +1,4 @@
-package com.example.ulmanaala.user;
+package com.example.ulmanaala.model;
 
 public class User {
     private String username;

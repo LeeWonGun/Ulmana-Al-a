@@ -1,62 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chatbot_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F9F9F9"
+    android:padding="8dp">
 
-    <!-- 대화창 -->
+    <!-- ✅ 대화 영역 -->
     <ScrollView
         android:id="@+id/chatScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/inputLayout"
-        android:padding="16dp">
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:overScrollMode="always">
 
         <LinearLayout
             android:id="@+id/chatLayout"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:spacing="10dp">
-            <!-- 대화 내용이 여기에 추가됩니다 -->
-        </LinearLayout>
+            android:orientation="vertical"
+            android:paddingBottom="16dp" />
     </ScrollView>
 
-    <!-- 입력 칸과 제출 버튼 (하단에 배치) -->
-    <RelativeLayout
+    <!-- ✅ 입력 영역 -->
+    <LinearLayout
         android:id="@+id/inputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="1dp"
-        android:padding="10dp">
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:gravity="center_vertical">
 
-        <!-- 사용자 질문 입력 칸 -->
         <EditText
             android:id="@+id/userInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@id/submitButton"
+            android:layout_weight="1"
             android:background="@drawable/edit"
-            android:gravity="center"
-            android:hint="궁금한 것을 물어보세요"
-            android:padding="10dp" />
+            android:hint="궁금한 걸 입력해보세요"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:inputType="text" />
 
-        <!-- 제출 버튼 -->
         <ImageButton
             android:id="@+id/submitButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
             android:background="@drawable/button_background"
-            android:padding="10dp"
-            android:text="질문 제출" />
-    </RelativeLayout>
+            android:contentDescription="질문 제출"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_send"
+            app:tint="@android:color/white" />
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
