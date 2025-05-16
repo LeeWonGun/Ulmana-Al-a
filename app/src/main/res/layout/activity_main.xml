@@ -13,10 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#FF5252"
+        android:layout_marginBottom="0dp"
+        app:itemIconSize="80dp"
+        app:itemIconTint="@drawable/bottom_nav_color"
+        app:itemTextColor="@drawable/bottom_nav_color"
+        android:background="#2196F3"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_menu"
-        />
+        app:menu="@menu/bottom_menu" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"

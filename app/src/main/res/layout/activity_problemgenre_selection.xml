@@ -1,47 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".problemgenre_selection">
+    android:background="#F5F6FA"
+    android:padding="0dp">
 
-    <Button
-        android:id="@+id/btn_science"
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="과학" />
+        android:layout_margin="24dp"
+        android:layout_gravity="center"
+        android:elevation="8dp"
+        app:cardCornerRadius="18dp">
 
-    <Button
-        android:id="@+id/btn_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="역사" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btn_spelling"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="맞춤법" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="문제 장르를 선택하세요"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#22223B"
+                android:paddingBottom="24dp"
+                android:letterSpacing="0.04"/>
 
-    <Button
-        android:id="@+id/btn_four_idioms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="사자성어" />
+            <Button
+                android:id="@+id/btn_science"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="과학"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"/>
 
-    <Button
-        android:id="@+id/btn_capital"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="수도" />
+            <Button
+                android:id="@+id/btn_history"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="역사"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"/>
 
-    <Button
-        android:id="@+id/btn_art"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="미술" />
+            <Button
+                android:id="@+id/btn_spelling"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="맞춤법"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"/>
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btn_four_idioms"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="사자성어"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"/>
+
+            <Button
+                android:id="@+id/btn_capital"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="수도"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"/>
+
+            <Button
+                android:id="@+id/btn_art"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="미술"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="0dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>

@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- 제목 -->
         <TextView
             android:id="@+id/title"
             android:text="랭킹"
@@ -20,14 +19,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <!-- 상위 랭킹 (회색 박스) -->
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- 랭킹 #1 ~ #6 -->
-            <!-- 반복 예시: -->
             <LinearLayout
                 android:orientation="vertical"
                 android:background="#EEEEEE"
@@ -158,13 +155,9 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <!-- 복사해서 #6까지 수정 -->
-            <!-- #2 ~ #6은 닉네임/점수만 바꾸면 됩니다 -->
-            <!-- 예: #2, 닉네임: moonlight, Score: 590점 등 -->
 
         </LinearLayout>
 
-        <!-- 기타 하위 랭킹 -->
         <View
             android:layout_height="1dp"
             android:layout_width="match_parent"

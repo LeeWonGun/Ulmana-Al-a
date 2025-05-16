@@ -1,31 +1,39 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:layout_marginEnd="12dp"
-    android:background="@android:color/white"
-    android:elevation="6dp"
-    android:layout_margin="8dp">
+    android:layout_margin="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    android:background="#F5F6FA">
 
-    <TextView
-        android:id="@+id/genreTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="분야: 역사"
-        android:textSize="15sp"
-        android:textColor="#222222"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/explanationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="상식 내용입니다..."
-        android:textSize="14sp"
-        android:textColor="#333333"
-        android:maxLines="3"
-        android:ellipsize="end"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/genreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="분야: @@"
+            android:textSize="16sp"
+            android:textColor="#4F8EF7"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/explanationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상식 내용입니다..."
+            android:textSize="15sp"
+            android:textColor="#22223B"
+            android:maxLines="3"
+            android:ellipsize="end"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

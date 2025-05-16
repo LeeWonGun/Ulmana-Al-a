@@ -1,42 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="20dp">
+    android:background="#F5F6FA">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아이디 찾기"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:paddingBottom="20dp"/>
-
-    <EditText
-        android:id="@+id/edtUsername"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="닉네임 입력"
-        android:padding="12dp"
-        android:background="@android:drawable/editbox_background"/>
+        android:layout_margin="24dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp">
 
-    <Button
-        android:id="@+id/btnFindId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="아이디 찾기"
-        android:layout_marginTop="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="28dp">
 
-    <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="이메일이 표시됩니다."
-        android:textSize="16sp"
-        android:textAlignment="center"
-        android:paddingTop="20dp"
-        android:visibility="gone"/>
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이디 찾기"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#22223B"
+                android:paddingBottom="28dp"
+                android:letterSpacing="0.04"/>
+
+            <EditText
+                android:id="@+id/edtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="닉네임을 입력하세요"
+                android:padding="16dp"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="#22223B"
+                android:textSize="16sp"
+                android:drawableLeft="@drawable/ic_person"
+                android:drawablePadding="12dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/btnFindId"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="아이디 찾기"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이메일이 표시됩니다."
+                android:textSize="16sp"
+                android:textColor="#4F8EF7"
+                android:gravity="center"
+                android:background="@drawable/rounded_result_bg"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>
