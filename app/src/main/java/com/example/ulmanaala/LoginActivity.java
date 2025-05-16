@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,13 +20,15 @@ import com.example.ulmanaala.client.RetrofitClient;
 import com.example.ulmanaala.request.LoginRequest;
 import com.example.ulmanaala.response.LoginResponse;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etEmail, etPw;
+    private EditText etEmail, etPassword;
     private Button btnLogin, btnMvRegister, btnFindId, btnFindPw;
     private ApiService apiService;
 
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // UI 연결
         etEmail = findViewById(R.id.et_Login_email);
-        etPw = findViewById(R.id.et_Login_pw);
+        etPassword = findViewById(R.id.et_Login_pw);
         btnLogin = findViewById(R.id.btn_login);
         btnMvRegister = findViewById(R.id.btn_mv_register);
         btnFindId = findViewById(R.id.btn_find_id);
@@ -52,53 +53,17 @@ public class LoginActivity extends AppCompatActivity {
 
         apiService = RetrofitClient.getApiService();
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = etEmail.getText().toString().trim();
-                String password = etPw.getText().toString().trim();
+        btnLogin.setOnClickListener(v -> {
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
 
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                LoginRequest loginRequest = new LoginRequest(email, password);
-                apiService.loginUser(loginRequest).enqueue(new Callback<LoginResponse>() {
-                    @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            LoginResponse loginResponse = response.body();
-                            int userId = loginResponse.getUserId();  // 수정된 부분
-                            String token = loginResponse.getToken();  // 수정된 부분
-
-                            Log.d("Login", "userId: " + userId + ", token: " + token);  // 로그 출력
-
-                            // SharedPreferences에 이메일 저장
-                            SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.putInt("userId", userId);  // userId 저장
-                            editor.putString("token", token);  // token 저장
-                            editor.apply();
-
-                            Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-
-                            // 홈(MainActivity) 화면으로 이동
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "로그인 실패: 이메일 또는 비밀번호가 잘못되었습니다", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        Log.e("LOGIN", "❌ 로그인 에러: " + t.getMessage());
-                        Toast.makeText(LoginActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            LoginRequest loginRequest = new LoginRequest(email, password);
+            loginUser(loginRequest);
         });
 
         btnMvRegister.setOnClickListener(view -> {
@@ -111,6 +76,54 @@ public class LoginActivity extends AppCompatActivity {
 
         btnFindPw.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+        });
+    }
+
+    private void loginUser(LoginRequest loginRequest) {
+        Call<LoginResponse> call = apiService.loginUser(loginRequest);
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    LoginResponse loginResponse = response.body();
+                    String token = loginResponse.getAccess();
+                    String email = loginResponse.getEmail();
+                    String username = loginResponse.getUsername();
+                    List<String> interests = loginResponse.getInterests();
+
+                    Log.d("Login", "token: " + token + ", email: " + email + ", username: " + username);
+
+                    SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("token", token);
+                    editor.putString("email", email);
+                    editor.putString("username", username);
+
+                    // 관심 분야 저장
+                    if (interests != null) {
+                        if (interests.size() > 0) editor.putString("interest1", interests.get(0));
+                        if (interests.size() > 1) editor.putString("interest2", interests.get(1));
+                        if (interests.size() > 2) editor.putString("interest3", interests.get(2));
+                    }
+
+                    editor.apply(); // 저장 완료
+
+                    Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
+
+                    // 메인화면(MainActivity)로 이동
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "로그인 실패: 이메일 또는 비밀번호 오류", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.e("LOGIN", "❌ 서버 통신 실패: " + t.getMessage());
+                Toast.makeText(LoginActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

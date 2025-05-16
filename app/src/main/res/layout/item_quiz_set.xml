@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/quizSetDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="푼 날짜:2025-04-27"
+        android:textSize="14sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/quizSetQuizType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="종목:"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/quizSetGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장르: 과학"
+        android:textSize="16sp"
+        android:textColor="#333333"/>
+
+    <TextView
+        android:id="@+id/quizSetTotalQuestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="총 문제 수: 25"
+        android:textSize="14sp"
+        android:textColor="#555555"/>
+
+    <TextView
+        android:id="@+id/quizSetWrongAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오답 수: 5"
+        android:textSize="14sp"
+        android:textColor="#555555"/>
+
+    <!-- 추가된 버튼 -->
+    <Button
+        android:id="@+id/quizSetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="10dp"
+        android:text="바로가기"
+        android:textColor="#000000" />
+</LinearLayout>

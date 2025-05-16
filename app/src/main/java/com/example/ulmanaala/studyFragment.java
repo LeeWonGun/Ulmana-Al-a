@@ -79,18 +79,18 @@ public class studyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button problemSolvingButton = view.findViewById(R.id.btn_problemsolving);/** 과학 선택시 화면이동*/
-        problemSolvingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), problemgenre_selection.class);
-                startActivity(intent);
-            }
+        // 문제 풀이 버튼 클릭 시 이동
+        Button problemSolvingButton = view.findViewById(R.id.btn_problemsolving);
+        problemSolvingButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), problemgenre_selection.class);
+            startActivity(intent);
         });
 
+        // 오답노트 버튼 클릭 시 이동
+        Button incorrectAnswerButton = view.findViewById(R.id.btn_incorrectanswer);
+        incorrectAnswerButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WrongAnswerActivity.class);
+            startActivity(intent);
+        });
     }
-
-
-
-
 }

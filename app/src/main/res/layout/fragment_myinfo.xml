@@ -118,44 +118,17 @@
         android:id="@+id/Recent_learning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="-30dp"
+        android:layout_marginTop="16dp"
         android:text="최근 학습 내역"
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_quiz_results"
         android:layout_width="match_parent"
-        android:layout_height="341dp"
-        android:layout_marginTop="16dp"
-        android:background="#E0E0E0"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:radius="8dp">
-
-        <TextView
-            android:id="@+id/tv_quiz_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="퀴즈 종류: 일반 상식"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_quiz_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="2025-04-02| 15:30 | 과목: 역사"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_quiz_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="정답: 7, 오답: 3"
-            android:textSize="14sp" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginHorizontal="8dp" />
 
 </LinearLayout>
