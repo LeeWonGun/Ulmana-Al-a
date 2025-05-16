@@ -1,31 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:background="#EEEEEE"
-    android:layout_marginVertical="4dp">
+    android:layout_marginVertical="6dp"
+    android:layout_marginHorizontal="8dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/tv_quiz_type"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="퀴즈 종류"
-        android:textStyle="bold"
-        android:textSize="16sp" />
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/tv_quiz_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="날짜 및 과목"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_quiz_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="퀴즈 종류"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#4F8EF7"
+            android:layout_marginBottom="4dp"/>
 
-    <TextView
-        android:id="@+id/tv_quiz_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="정답/오답"
-        android:textSize="14sp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_quiz_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="날짜 및 과목"
+            android:textSize="14sp"
+            android:textColor="#22223B"
+            android:layout_marginBottom="2dp"/>
+
+        <TextView
+            android:id="@+id/tv_quiz_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정답/오답"
+            android:textSize="14sp"
+            android:textColor="#22223B"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

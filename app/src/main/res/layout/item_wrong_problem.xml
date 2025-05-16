@@ -1,34 +1,49 @@
-<!-- res/layout/item_wrong_problem.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="12dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/tv_question"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="문제"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-medium"
-        android:paddingBottom="8dp" />
+        android:padding="18dp"
+        android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/tv_user_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="사용자 답변"
-        android:textSize="14sp"
-        android:textColor="#F44336" />
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문제"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#22223B"
+            android:fontFamily="sans-serif-medium"
+            android:paddingBottom="8dp" />
 
-    <TextView
-        android:id="@+id/tv_correct_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="정답"
-        android:textSize="14sp"
-        android:textColor="#2196F3"
-        android:paddingBottom="4dp" />
+        <TextView
+            android:id="@+id/tv_user_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용자 답변"
+            android:textSize="14sp"
+            android:textColor="#F44336"
+            android:paddingBottom="2dp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_correct_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정답"
+            android:textSize="14sp"
+            android:textColor="#2196F3"
+            android:paddingBottom="2dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
