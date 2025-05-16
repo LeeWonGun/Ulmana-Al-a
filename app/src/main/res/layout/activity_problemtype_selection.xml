@@ -1,28 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#F5F6FA"
     tools:context=".ProblemType_SelectionActivity">
 
-    <Button
-        android:id="@+id/btn_test50"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="50문제 시험" />
+        android:layout_margin="24dp"
+        android:layout_gravity="center"
+        android:elevation="8dp"
+        app:cardCornerRadius="18dp">
 
-    <Button
-        android:id="@+id/btn_test25"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="25문제 시험" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btn_speedquiz"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="스피드 퀴즈" />
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="문제 유형을 선택하세요"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#22223B"
+                android:paddingBottom="24dp"
+                android:letterSpacing="0.04"/>
+
+            <Button
+                android:id="@+id/btn_test50"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="50문제 시험"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btn_test25"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="25문제 시험"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btn_speedquiz"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="스피드 퀴즈"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginBottom="0dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>

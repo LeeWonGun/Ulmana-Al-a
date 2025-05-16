@@ -3,18 +3,19 @@
 
     <item
         android:id="@+id/homeFrag"
-        android:icon="@android:drawable/ic_media_ff"
-        android:title="홈" />
+        android:icon="@drawable/ic_home"
+        android:title="홈"
+        />
     <item
         android:id="@+id/studyFrag"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/ic_problem"
         android:title="학습" />
     <item
         android:id="@+id/chatbotFrag"
-        android:icon="@android:drawable/ic_menu_call"
+        android:icon="@drawable/ic_chatbot"
         android:title="챗봇" />
     <item
         android:id="@+id/myinfoFrag"
-        android:icon="@android:drawable/star_big_off"
+        android:icon="@drawable/ic_myprofile"
         android:title="마이" />
 </menu>

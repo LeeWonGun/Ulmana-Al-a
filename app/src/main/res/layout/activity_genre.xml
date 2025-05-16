@@ -1,66 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".GenreActivity">
+    android:background="#F5F6FA"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    <!-- 🔹 안내 문구 추가 -->
-    <TextView
-        android:id="@+id/tv_select_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="관심사를 선택하세요"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+    android:padding="0dp">
 
-    <!-- 🔹 체크박스 리스트 -->
-    <CheckBox
-        android:id="@+id/chk_science"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="과학" />
-
-    <CheckBox
-        android:id="@+id/chk_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="역사" />
-
-    <CheckBox
-        android:id="@+id/chk_four_idoms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="사자성어" />
-
-    <CheckBox
-        android:id="@+id/chk_spelling"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="맞춤법" />
-
-    <CheckBox
-        android:id="@+id/chk_capital"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="수도" />
-
-    <CheckBox
-        android:id="@+id/chk_art"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="미술" />
-
-    <!-- 🔹 다음 버튼 -->
-    <Button
-        android:id="@+id/btn_selectgenre"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="완료"
-        android:layout_marginTop="20dp" />
-</LinearLayout>
+        android:layout_margin="24dp"
+        android:layout_gravity="center"
+        android:elevation="8dp"
+        app:cardCornerRadius="18dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tv_select_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="관심사를 선택하세요"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#22223B"
+                android:paddingBottom="24dp"
+                android:letterSpacing="0.04"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/transparent">
+
+                <CheckBox
+                    android:id="@+id/chk_science"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="과학"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+
+                <CheckBox
+                    android:id="@+id/chk_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="역사"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+
+                <CheckBox
+                    android:id="@+id/chk_four_idoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사자성어"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+
+                <CheckBox
+                    android:id="@+id/chk_spelling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="맞춤법"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+
+                <CheckBox
+                    android:id="@+id/chk_capital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="수도"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+
+                <CheckBox
+                    android:id="@+id/chk_art"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="미술"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_selectgenre"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="완료"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginTop="32dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>

@@ -2,83 +2,155 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="#F5F6FA"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="0dp">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="24dp"
+        android:layout_gravity="center"
+        android:elevation="8dp"
+        app:cardCornerRadius="18dp">
 
-        <EditText
-            android:id="@+id/et_register_username"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="닉네임 입력" />
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:gravity="center_horizontal">
 
-        <EditText
-            android:id="@+id/et_register_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="이메일 입력"
-            android:inputType="textEmailAddress" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#22223B"
+                android:paddingBottom="28dp"
+                android:letterSpacing="0.04"/>
 
-        <EditText
-            android:id="@+id/et_register_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="비밀번호 입력"
-            android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/et_register_username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="닉네임 입력"
+                android:background="@drawable/rounded_edittext"
+                android:padding="16dp"
+                android:textColor="#22223B"
+                android:textSize="16sp"
+                android:drawableLeft="@drawable/ic_person"
+                android:drawablePadding="12dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="12dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="관심사를 선택하세요"
-            android:layout_marginTop="16dp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/et_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="이메일 입력"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/rounded_edittext"
+                android:padding="16dp"
+                android:textColor="#22223B"
+                android:textSize="16sp"
+                android:drawableLeft="@drawable/ic_email"
+                android:drawablePadding="12dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="12dp"/>
 
-        <CheckBox
-            android:id="@+id/chk_science"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="과학" />
+            <EditText
+                android:id="@+id/et_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="비밀번호 입력"
+                android:inputType="textPassword"
+                android:background="@drawable/rounded_edittext"
+                android:padding="16dp"
+                android:textColor="#22223B"
+                android:textSize="16sp"
+                android:drawableLeft="@drawable/ic_lock"
+                android:drawablePadding="12dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="18dp"/>
 
-        <CheckBox
-            android:id="@+id/chk_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="역사" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="관심사를 선택하세요"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#4F8EF7"
+                android:layout_marginBottom="8dp"/>
 
-        <CheckBox
-            android:id="@+id/chk_idiom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="사자성어" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/transparent">
 
-        <CheckBox
-            android:id="@+id/chk_grammar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="맞춤법" />
+                <CheckBox
+                    android:id="@+id/chk_science"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="과학"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
 
-        <CheckBox
-            android:id="@+id/chk_capital"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="수도" />
+                <CheckBox
+                    android:id="@+id/chk_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="역사"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
 
-        <CheckBox
-            android:id="@+id/chk_art"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="미술" />
+                <CheckBox
+                    android:id="@+id/chk_idiom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사자성어"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
 
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="회원가입"
-            android:layout_marginTop="20dp" />
+                <CheckBox
+                    android:id="@+id/chk_grammar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="맞춤법"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
 
-    </LinearLayout>
+                <CheckBox
+                    android:id="@+id/chk_capital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="수도"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+
+                <CheckBox
+                    android:id="@+id/chk_art"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="미술"
+                    android:textColor="#22223B"
+                    android:buttonTint="#4F8EF7"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="회원가입"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:backgroundTint="#4F8EF7"
+                android:elevation="4dp"
+                android:layout_marginTop="24dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>
