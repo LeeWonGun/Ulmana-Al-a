@@ -68,11 +68,6 @@ public class RegisterActivity extends AppCompatActivity {
                 if (chkCapital.isChecked()) selectedInterests.add("수도");
                 if (chkArt.isChecked()) selectedInterests.add("미술");
 
-                if (selectedInterests.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "최소 하나의 관심사를 선택하세요", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 if (selectedInterests.size() > 3) {
                     Toast.makeText(RegisterActivity.this, "최대 3개의 관심사만 선택할 수 있습니다", Toast.LENGTH_SHORT).show();
                     return;

@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Android 기본 아이콘 사용 -->
+    <ImageView
+        android:id="@+id/item_profile"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/sym_def_app_icon"
+        android:layout_marginEnd="12dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/item_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1위"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임" />
+
+        <TextView
+            android:id="@+id/item_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="600점" />
+    </LinearLayout>
+</LinearLayout>
