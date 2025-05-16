@@ -170,7 +170,7 @@ public class myinfoFragment extends Fragment {
                         // Glide로 이미지 로딩
                         Glide.with(getContext())
                                 .load(fullImageUrl)
-                                .placeholder(R.drawable.ic_profile_placeholder)
+                                .placeholder(R.drawable.ic_person)
                                 .into(profileImageView);
 
                         Toast.makeText(getContext(), "이미지 업로드 완료!", Toast.LENGTH_SHORT).show();
