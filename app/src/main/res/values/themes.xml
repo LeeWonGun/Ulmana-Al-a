@@ -4,7 +4,7 @@
     <color name="colorBottomNavSelected">#4F8EF7</color>
     <color name="colorBottomNavUnselected">#B0B0B0</color>
     <color name="colorBottomNavIndicator">#EAF1FF</color>
-    <style name="Base.Theme.UlmanaAlA" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.UlmanaAlA" parent="Theme.Material3.DayNight.NoActionBar">
     </style>
 
     <style name="Theme.UlmanaAlA" parent="Base.Theme.UlmanaAlA" />

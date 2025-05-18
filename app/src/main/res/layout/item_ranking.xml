@@ -17,7 +17,6 @@
         android:gravity="center_vertical"
         android:background="@android:color/white">
 
-        <!-- 프로필 이미지 (동그라미 처리) -->
         <ImageView
             android:id="@+id/item_profile"
             android:layout_width="48dp"
