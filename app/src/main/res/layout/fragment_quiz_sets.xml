@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F5F6FA">
 
-    <!-- 상단 타이틀 -->
     <TextView
         android:id="@+id/tv_quiz_sets_title"
         android:layout_width="wrap_content"
@@ -20,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- 카드뷰로 감싼 리사이클러뷰 -->
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"

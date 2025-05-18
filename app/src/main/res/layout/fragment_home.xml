@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,18 +19,18 @@
         android:textColor="#22223B"
         android:layout_marginBottom="12dp" />
 
-    <Button
+    <!-- 새로고침 버튼을 ImageButton으로 변경 -->
+    <ImageButton
         android:id="@+id/btn_refresh_daily_facts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="새로고침"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="end"
-        android:backgroundTint="#4F8EF7"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"
         android:layout_marginBottom="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="새로고침"
+        android:padding="8dp"
+        android:src="@drawable/ic_refresh"
+        android:tint="#4F8EF7"
         android:elevation="4dp" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -54,22 +53,13 @@
         app:cardElevation="6dp"
         android:background="#4F8EF7">
 
-        <LinearLayout
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/recommendViewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:lineSpacingExtra="4dp"
-                android:text="가장 인기 있는 조합!\n역사 X 스피드 퀴즈 돌리기"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp" />
-        </LinearLayout>
+            android:clipToPadding="false"
+            android:padding="8dp"
+            android:overScrollMode="never"/>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
