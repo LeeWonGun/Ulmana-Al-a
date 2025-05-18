@@ -1,0 +1,4 @@
+package com.example.ulmanaala;
+
+public class RecommendItem {
+}

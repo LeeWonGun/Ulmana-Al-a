@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/chatbot_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -54,7 +53,7 @@
             android:contentDescription="질문 제출"
             android:scaleType="centerInside"
             android:src="@android:drawable/ic_menu_send"
-            app:tint="@android:color/white" />
+            android:tint="@android:color/white" />
     </LinearLayout>
 
 </LinearLayout>
