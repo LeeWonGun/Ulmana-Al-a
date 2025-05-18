@@ -19,7 +19,6 @@
         android:textColor="#22223B"
         android:layout_marginBottom="12dp" />
 
-    <!-- 새로고침 버튼을 ImageButton으로 변경 -->
     <ImageButton
         android:id="@+id/btn_refresh_daily_facts"
         android:layout_width="40dp"

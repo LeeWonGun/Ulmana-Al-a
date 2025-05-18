@@ -12,7 +12,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- 상단 바 -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -48,7 +47,6 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- 프로필 섹션 -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,7 +97,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- 관심분야 섹션 -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,7 +132,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- 퀴즈 기록 섹션 -->
         <TextView
             android:id="@+id/Recent_learning"
             android:layout_width="wrap_content"

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#F5F6FA">
 
-    <!-- 상단 TabLayout 카드로 감싸기 -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +30,6 @@
             app:tabRippleColor="@android:color/transparent"/>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- ViewPager2 -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/ranking_viewpager"
         android:layout_width="match_parent"
