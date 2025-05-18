@@ -84,9 +84,9 @@ public class homeFragment extends Fragment {
     private void setupRecommendSlider(View view) {
 
         List<RecommendItem> recommendList = new ArrayList<>();
-        recommendList.add(new RecommendItem("랭킹 바로가기", RankingActivity.class));
-        recommendList.add(new RecommendItem("문제풀이 바로가기", problemgenre_selection.class));
-        recommendList.add(new RecommendItem("오답노트 바로가기", QuizSetsActivity.class));
+        recommendList.add(new RecommendItem("지금 내 등수는?", RankingActivity.class));
+        recommendList.add(new RecommendItem("내 상식 수준은?", problemgenre_selection.class));
+        recommendList.add(new RecommendItem("틀린문제를 확인해보자!!", QuizSetsActivity.class));
 
         RecommendPagerAdapter adapter = new RecommendPagerAdapter(recommendList, requireContext());
         ViewPager2 recommendViewPager = view.findViewById(R.id.recommendViewPager);
