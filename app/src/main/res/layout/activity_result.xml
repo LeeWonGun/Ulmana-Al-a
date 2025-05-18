@@ -25,7 +25,6 @@
             android:padding="32dp"
             android:background="@android:color/white">
 
-            <!-- 퀴즈 결과 제목 -->
             <TextView
                 android:id="@+id/text_quiz_type"
                 android:layout_width="wrap_content"
@@ -46,7 +45,6 @@
                 android:textColor="#22223B"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- 점수 및 통계 -->
             <TextView
                 android:id="@+id/text_score"
                 android:layout_width="wrap_content"
@@ -74,7 +72,6 @@
                 android:textColor="#FF5C5C"
                 android:layout_marginBottom="8dp"/>
 
-            <!-- 스피드 퀴즈에서만 보일 소요 시간 -->
             <TextView
                 android:id="@+id/text_time_taken"
                 android:layout_width="wrap_content"
@@ -85,7 +82,6 @@
                 android:visibility="gone"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- 다시 풀기 버튼 -->
             <Button
                 android:id="@+id/btn_retry"
                 android:layout_width="match_parent"
@@ -98,7 +94,6 @@
                 android:elevation="4dp"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- 홈으로 돌아가기 버튼 -->
             <Button
                 android:id="@+id/btn_go_home"
                 android:layout_width="match_parent"

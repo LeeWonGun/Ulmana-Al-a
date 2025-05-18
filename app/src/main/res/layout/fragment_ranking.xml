@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F5F6FA">
 
-    <!-- 랭킹 리스트 -->
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -26,7 +25,6 @@
             android:padding="12dp"/>
     </androidx.cardview.widget.CardView>
 
-    <!-- 내 랭킹 정보 -->
     <androidx.cardview.widget.CardView
         android:id="@+id/my_ranking_card"
         android:layout_width="0dp"
