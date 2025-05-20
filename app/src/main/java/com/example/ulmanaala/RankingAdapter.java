@@ -45,7 +45,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
         } else {
             // 절대 URL이면 그대로, 상대경로면 서버 주소 붙이기
             if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
-                imageUrl = "http://10.0.2.2:8000" + imageUrl;
+                imageUrl = "http://43.200.172.76:8000/" + imageUrl;
             }
 
             Glide.with(holder.itemView.getContext())
