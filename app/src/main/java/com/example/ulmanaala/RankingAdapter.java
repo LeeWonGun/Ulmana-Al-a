@@ -39,19 +39,23 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
         holder.name.setText(item.nickname);
         holder.score.setText((int)item.score + "점");
 
-        // Glide로 이미지 로딩
-        if (item.profileImage != null && !item.profileImage.isEmpty()) {
-            Glide.with(holder.itemView.getContext())
-                    .load(item.profileImage)
-                    .placeholder(android.R.drawable.sym_def_app_icon) // 기본 이미지
-                    .error(android.R.drawable.ic_menu_report_image)   // 오류 시 이미지
-                    .circleCrop() // 원형 처리 (선택)
-                    .into(holder.image);
+        String imageUrl = item.profileImage;
+        if (imageUrl == null || imageUrl.isEmpty()) {
+            holder.image.setImageResource(R.drawable.ic_person);
         } else {
-            holder.image.setImageResource(android.R.drawable.sym_def_app_icon); // 기본 이미지
+            // 절대 URL이면 그대로, 상대경로면 서버 주소 붙이기
+            if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
+                imageUrl = "http://10.0.2.2:8000" + imageUrl;
+            }
+
+            Glide.with(holder.itemView.getContext())
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_person)
+                    .error(R.drawable.ic_person)
+                    .circleCrop()
+                    .into(holder.image);
         }
     }
-
     @Override
     public int getItemCount() {
         return items.size();

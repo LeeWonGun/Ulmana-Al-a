@@ -28,6 +28,7 @@ import com.example.ulmanaala.api.ApiService;
 import com.example.ulmanaala.client.RetrofitClient;
 import com.example.ulmanaala.model.QuizResult;
 import com.example.ulmanaala.QuizResultAdapter;
+import com.example.ulmanaala.response.UploadImageResponse;
 import com.example.ulmanaala.utils.FileUtils;
 
 import org.json.JSONObject;
@@ -48,6 +49,7 @@ import retrofit2.Response;
 
 public class myinfoFragment extends Fragment {
 
+    private SharedPreferences prefs;
     private ImageView profileImageView;
     private TextView tvNickname, tvEmail, tvInterest;
     private ImageButton btnSettings;
@@ -55,6 +57,7 @@ public class myinfoFragment extends Fragment {
     private RecyclerView recyclerQuizResults;
     private QuizResultAdapter adapter;
     private List<QuizResult> quizResultList = new ArrayList<>();
+
     private String accessToken;
     private String username, email, interest1, interest2, interest3;
 
@@ -62,18 +65,32 @@ public class myinfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myinfo, container, false);
 
-        profileImageView = view.findViewById(R.id.profile_image);
-        tvNickname = view.findViewById(R.id.tv_nickname);
-        tvEmail = view.findViewById(R.id.tv_email);
-        tvInterest = view.findViewById(R.id.tv_interest);
-        btnSettings = view.findViewById(R.id.btn_settings);
-        btnEditInterest = view.findViewById(R.id.btn_edit_interest);
-        recyclerQuizResults = view.findViewById(R.id.recycler_quiz_results);
+        profileImageView   = view.findViewById(R.id.profile_image);
+        tvNickname         = view.findViewById(R.id.tv_nickname);
+        tvEmail            = view.findViewById(R.id.tv_email);
+        tvInterest         = view.findViewById(R.id.tv_interest);
+        btnSettings        = view.findViewById(R.id.btn_settings);
+        btnEditInterest    = view.findViewById(R.id.btn_edit_interest);
+        recyclerQuizResults= view.findViewById(R.id.recycler_quiz_results);
 
-        SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        // SharedPreferences 초기화
+        prefs = requireActivity()
+                .getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         accessToken = prefs.getString("token", null);
-        username = prefs.getString("username", "");
-        email = prefs.getString("email", "");
+
+        // 저장된 프로필 이미지 URL 로드
+        String savedImageUrl = prefs.getString("profileImage", "");
+        if (savedImageUrl != null && !savedImageUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(savedImageUrl)
+                    .placeholder(R.drawable.ic_person)  // 기본 아이콘
+                    .circleCrop()
+                    .into(profileImageView);
+        }
+
+        // 기존 정보 로드
+        username  = prefs.getString("username", "");
+        email     = prefs.getString("email", "");
         interest1 = prefs.getString("interest1", "");
         interest2 = prefs.getString("interest2", "");
         interest3 = prefs.getString("interest3", "");
@@ -82,6 +99,7 @@ public class myinfoFragment extends Fragment {
         tvEmail.setText(email);
         tvInterest.setText("관심 분야: " + joinInterests(interest1, interest2, interest3));
 
+        // 퀴즈 결과 RecyclerView 설정
         recyclerQuizResults.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new QuizResultAdapter(quizResultList);
         recyclerQuizResults.setAdapter(adapter);
@@ -92,6 +110,24 @@ public class myinfoFragment extends Fragment {
         fetchQuizResults();
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 로컬 선언 제거, 바로 prefs 사용
+        SharedPreferences prefs = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String savedImageUrl = prefs.getString("profileImage", "");
+
+        if (savedImageUrl != null && !savedImageUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(savedImageUrl)
+                    .placeholder(R.drawable.ic_person)
+                    .circleCrop()
+                    .into(profileImageView);  // 이게 정확히 맞는지 확인
+        }
+
+        fetchQuizResults();  // 최신 퀴즈 결과
     }
 
     private void fetchQuizResults() {
@@ -138,8 +174,7 @@ public class myinfoFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1001 && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
             Uri selectedImageUri = data.getData();
-            String imagePath = FileUtils.getPath(getContext(), selectedImageUri); // 아래 참고
-
+            String imagePath = FileUtils.getPath(getContext(), selectedImageUri);
             if (imagePath != null) {
                 uploadProfileImage(imagePath);
             } else {
@@ -151,42 +186,39 @@ public class myinfoFragment extends Fragment {
     private void uploadProfileImage(String imagePath) {
         File file = new File(imagePath);
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("profile_image", file.getName(), requestFile);
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("profile_image", file.getName(), requestFile);
 
         ApiService apiService = RetrofitClient.getApiService();
-        apiService.uploadProfileImage("Bearer " + accessToken, body).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    try {
-                        // 응답 JSON 파싱
-                        String responseBody = response.body().string();
-                        JSONObject jsonObject = new JSONObject(responseBody);
-                        String imageUrl = jsonObject.getString("profile_image_url");
+        apiService.uploadProfileImage("Bearer " + accessToken, body)
+                .enqueue(new Callback<UploadImageResponse>() {   // ← 여기 Callback<T> 를 바꿨습니다.
+                    @Override
+                    public void onResponse(Call<UploadImageResponse> call, Response<UploadImageResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            // 직접 JSON 파싱 대신 DTO에서 꺼내기
+                            String relUrl = response.body().getProfileImageUrl(); // "/media/…"
+                            String fullUrl = relUrl;  // 서버에서 절대 URL을 보내주므로 그대로 사용
 
-                        // 전체 URL로 만들기
-                        String fullImageUrl = "http://43.200.172.76:8000" + imageUrl;
+                            // SharedPreferences에 저장
+                            prefs.edit()
+                                    .putString("profileImage", fullUrl)
+                                    .apply();
 
-                        // Glide로 이미지 로딩
-                        Glide.with(getContext())
-                                .load(fullImageUrl)
-                                .placeholder(R.drawable.ic_person)
-                                .into(profileImageView);
+                            // 즉시 UI 갱신
+                            Glide.with(profileImageView.getContext())
+                                    .load(fullUrl)
+                                    .placeholder(R.drawable.ic_person)
+                                    .circleCrop()
+                                    .into(profileImageView);
 
-                        Toast.makeText(getContext(), "이미지 업로드 완료!", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                            Toast.makeText(getContext(), "프로필 사진이 업데이트 되었습니다!", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } else {
-                    Toast.makeText(getContext(), "업로드 실패", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getContext(), "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onFailure(Call<UploadImageResponse> call, Throwable t) {
+                        Toast.makeText(getContext(), "업로드 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private String joinInterests(String... interests) {

@@ -19,6 +19,7 @@ import com.example.ulmanaala.response.RankingResponse;
 import com.example.ulmanaala.response.RegisterResponse;
 import com.example.ulmanaala.response.ResetPasswordResponse;
 import com.example.ulmanaala.response.SpeedQuizResponse;
+import com.example.ulmanaala.response.UploadImageResponse;
 import com.example.ulmanaala.response.WrongNoteSubmitResponse;
 import com.example.ulmanaala.response.UserProfileResponse;
 
@@ -108,10 +109,10 @@ public interface ApiService {
 
     // 이미지 파일 업로드 API
     @Multipart
-    @POST("upload-profile-image/")
-    Call<ResponseBody> uploadProfileImage(
+    @POST("user/upload-profile-image/")
+    Call<UploadImageResponse> uploadProfileImage(
             @Header("Authorization") String token,
-            @Part MultipartBody.Part image
+            @Part MultipartBody.Part profile_image
     );
 
     // 마이페이지 최근 학습 내역
