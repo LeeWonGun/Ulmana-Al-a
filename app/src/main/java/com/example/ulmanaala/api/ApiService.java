@@ -115,6 +115,10 @@ public interface ApiService {
             @Part MultipartBody.Part profile_image
     );
 
+    // 이미지 초기화 API
+    @POST("reset-profile-image/")
+    Call<ResponseBody> resetProfileImage(@Header("Authorization") String token);
+
     // 마이페이지 최근 학습 내역
     @GET("/quiz-results/")
     Call<List<QuizResult>> getQuizResults(@Header("Authorization") String token);

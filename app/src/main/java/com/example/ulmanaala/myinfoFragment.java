@@ -150,14 +150,15 @@ public class myinfoFragment extends Fragment {
     }
 
     private void showSettingsDialog() {
-        final String[] options = {"프로필 이미지 변경", "닉네임 변경", "비밀번호 변경"};
+        final String[] options = {"프로필 이미지 변경", "기본 이미지로 초기화", "닉네임 변경", "비밀번호 변경"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("프로필 설정")
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) selectProfileImage();
-                    else if (which == 1) showNicknameDialog();
-                    else if (which == 2) showPasswordDialog();
+                    else if (which == 1) resetProfileImage();
+                    else if (which == 2) showNicknameDialog();
+                    else if (which == 3) showPasswordDialog();
                 })
                 .setNegativeButton("취소", (dialog, which) -> dialog.dismiss())
                 .show();
@@ -243,6 +244,33 @@ public class myinfoFragment extends Fragment {
             case "7": return "기타";
             default: return "알 수 없음";
         }
+    }
+
+    private void resetProfileImage() {
+        ApiService apiService = RetrofitClient.getApiService();
+        apiService.resetProfileImage("Bearer " + accessToken)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            // SharedPreferences 초기화
+                            SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                            prefs.edit().remove("profileImage").apply();
+
+                            // 기본 이미지로 변경
+                            profileImageView.setImageResource(R.drawable.ic_person);
+
+                            Toast.makeText(getContext(), "기본 이미지로 변경되었습니다!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "초기화 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(getContext(), "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void showNicknameDialog() {
