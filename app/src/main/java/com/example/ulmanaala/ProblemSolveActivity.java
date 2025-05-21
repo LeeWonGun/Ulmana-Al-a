@@ -28,6 +28,7 @@ import retrofit2.Response;
 
 public class ProblemSolveActivity extends AppCompatActivity {
 
+    private boolean isSubmitted = false;
     private int currentProblemNumber = 1;
     private int maxProblemNumber = 10;
     private Button btnNext, btnBefore;
@@ -119,6 +120,13 @@ public class ProblemSolveActivity extends AppCompatActivity {
     }
 
     private void submitTest() {
+        if (isSubmitted) return;  // ✅ 이미 제출했으면 return
+        isSubmitted = true;       // ✅ 최초 제출만 통과
+
+        if (countDownTimer != null) {
+            countDownTimer.cancel();  // ✅ 제출 후 타이머 멈추기
+        }
+
         saveCurrentAnswer();
 
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
