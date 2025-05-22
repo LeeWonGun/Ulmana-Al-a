@@ -8,23 +8,36 @@ public class QuestionResponse {
     private String option3;
     private String option4;
 
-    public int getQuestionId() { return question_id; }
+    public int getQuestion_id() {
+        return question_id;
+    }
 
-    public String getQuestionText() { return question_text; }
+    public String getQuestion_text() {
+        return question_text;
+    }
 
-    public String getOption1() { return option1; }
+    public String getOption1() {
+        return option1;
+    }
 
-    public String getOption2() { return option2; }
+    public String getOption2() {
+        return option2;
+    }
 
-    public String getOption3() { return option3; }
+    public String getOption3() {
+        return option3;
+    }
 
-    public String getOption4() { return option4; }
+    public String getOption4() {
+        return option4;
+    }
 
-    public void setQuestionId(int question_id) {
+
+    public void setQuestion_id(int question_id) {
         this.question_id = question_id;
     }
 
-    public void setQuestionText(String question_text) {
+    public void setQuestion_text(String question_text) {
         this.question_text = question_text;
     }
 
@@ -43,4 +56,5 @@ public class QuestionResponse {
     public void setOption4(String option4) {
         this.option4 = option4;
     }
+
 }
