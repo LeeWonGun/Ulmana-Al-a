@@ -138,7 +138,7 @@ public class ProblemSolveActivity extends AppCompatActivity {
 
         List<QuizResultRequest.QuizAnswer> answerList = new ArrayList<>();
         for (int i = 0; i < questionList.size(); i++) {
-            int qId = questionList.get(i).getQuestionId();
+            int qId = questionList.get(i).getQuestion_id();
             int selected = userAnswers.size() > i ? userAnswers.get(i) : -1;
             answerList.add(new QuizResultRequest.QuizAnswer(qId, selected));
         }
@@ -240,7 +240,7 @@ public class ProblemSolveActivity extends AppCompatActivity {
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         QuestionResponse q = questionList.get(currentProblemNumber - 1);
         problemFragment frag = problemFragment.newInstance(
-                q.getQuestionText(), q.getOption1(), q.getOption2(),
+                q.getQuestion_text(), q.getOption1(), q.getOption2(),
                 q.getOption3(), q.getOption4(), userAnswers.get(currentProblemNumber - 1));
         tx.replace(R.id.fragment_container, frag).commit();
     }
