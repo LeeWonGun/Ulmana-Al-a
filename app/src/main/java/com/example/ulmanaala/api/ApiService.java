@@ -144,4 +144,11 @@ public interface ApiService {
             @Query("mode") String mode  // 예: "speed", "solve", "total"
 
     );
+
+    // 정답률에 따른 문제 추천
+    @GET("/recommend/daily/")
+    Call<List<QuestionResponse>> getTodayRecommendedQuestions(
+            @Header("Authorization") String token,
+            @Query("genre_id") int genreId
+    );
 }

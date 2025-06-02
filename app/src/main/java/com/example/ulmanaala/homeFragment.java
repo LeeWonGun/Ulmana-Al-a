@@ -84,6 +84,7 @@ public class homeFragment extends Fragment {
     private void setupRecommendSlider(View view) {
 
         List<RecommendItem> recommendList = new ArrayList<>();
+        recommendList.add(new RecommendItem("오늘의 추천 문제는?", TodayRecommendActivity.class));
         recommendList.add(new RecommendItem("지금 내 등수는?", RankingActivity.class));
         recommendList.add(new RecommendItem("내 상식 수준은?", problemgenre_selection.class));
         recommendList.add(new RecommendItem("틀린문제를 확인해보자!!", QuizSetsActivity.class));

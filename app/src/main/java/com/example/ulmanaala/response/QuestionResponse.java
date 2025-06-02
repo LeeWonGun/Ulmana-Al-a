@@ -7,6 +7,10 @@ public class QuestionResponse {
     private String option2;
     private String option3;
     private String option4;
+    private Double accuracy;
+    private String correct_answer;
+    private String explanation;
+
 
     public int getQuestion_id() {
         return question_id;
@@ -32,6 +36,29 @@ public class QuestionResponse {
         return option4;
     }
 
+    public Double getAccuracy() {
+        return accuracy;
+    }
+
+    public String getCorrect_answer() {
+        return correct_answer;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setAccuracy(Double accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public void setCorrect_answer(String correct_answer) {
+        this.correct_answer = correct_answer;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
 
     public void setQuestion_id(int question_id) {
         this.question_id = question_id;
@@ -57,4 +84,7 @@ public class QuestionResponse {
         this.option4 = option4;
     }
 
+    public void setAccuracy(double accuracy) {
+        this.accuracy = accuracy;
+    }
 }
