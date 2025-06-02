@@ -13,7 +13,6 @@ public class RetrofitClient {
     private static Retrofit chatRetrofit = null;
 
 
-    // private static final String BASE_URL = "http://10.0.2.2:8000/";
     // ✅ Django 서버 주소
     private static final String BASE_URL = "http://43.200.172.76:8000/";
 
