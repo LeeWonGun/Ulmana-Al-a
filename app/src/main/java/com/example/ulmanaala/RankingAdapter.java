@@ -1,5 +1,6 @@
 package com.example.ulmanaala;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.ulmanaala.model.RankingItem;
 
 import java.util.ArrayList;
@@ -45,13 +47,23 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
         } else {
             // 절대 URL이면 그대로, 상대경로면 서버 주소 붙이기
             if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
-                imageUrl = "http://43.200.172.76:8000/" + imageUrl;
+                if (imageUrl.startsWith("/")) {
+                    imageUrl = "http://43.200.172.76:8000" + imageUrl;
+                } else {
+                    imageUrl = "http://43.200.172.76:8000/" + imageUrl;
+                }
             }
 
+            // 이미지 URL 확인 로그 (선택)
+            Log.d("RankingAdapter", "Image URL: " + imageUrl);
+
+            // ⭐ 캐시 무시하고 로딩
             Glide.with(holder.itemView.getContext())
                     .load(imageUrl)
                     .placeholder(R.drawable.ic_person)
                     .error(R.drawable.ic_person)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .circleCrop()
                     .into(holder.image);
         }
