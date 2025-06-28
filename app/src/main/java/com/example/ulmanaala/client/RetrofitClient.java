@@ -2,6 +2,8 @@ package com.example.ulmanaala.client;
 
 import com.example.ulmanaala.api.ApiService;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -11,7 +13,6 @@ public class RetrofitClient {
 
     private static Retrofit defaultRetrofit = null;
     private static Retrofit chatRetrofit = null;
-
 
     // ✅ Django 서버 주소
     private static final String BASE_URL = "http://43.200.172.76:8000/";
@@ -26,6 +27,10 @@ public class RetrofitClient {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
             OkHttpClient client = new OkHttpClient.Builder()
+                    .retryOnConnectionFailure(true)  // ✅ 재시도 설정
+                    .connectTimeout(15, TimeUnit.SECONDS)  // ✅ 연결 타임아웃
+                    .readTimeout(15, TimeUnit.SECONDS)     // ✅ 응답 수신 타임아웃
+                    .writeTimeout(15, TimeUnit.SECONDS)    // ✅ 요청 송신 타임아웃
                     .addInterceptor(loggingInterceptor)
                     .build();
 
@@ -45,6 +50,10 @@ public class RetrofitClient {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
             OkHttpClient client = new OkHttpClient.Builder()
+                    .retryOnConnectionFailure(true)
+                    .connectTimeout(15, TimeUnit.SECONDS)
+                    .readTimeout(15, TimeUnit.SECONDS)
+                    .writeTimeout(15, TimeUnit.SECONDS)
                     .addInterceptor(loggingInterceptor)
                     .build();
 
